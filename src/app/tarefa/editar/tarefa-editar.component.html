@@ -1,7 +1,8 @@
-<h1>{{tituloDaPagina}}</h1>
+<h1>{{titulo}}</h1>
 <hr>
 
-<form [formGroup]="cadastroForm" (ngSubmit)="adicionarTarefa()">
+<form [formGroup]="cadastroForm" (ngSubmit)="editarTarefa()">
+
     <label for="titulo">Titulo</label>
     <div>
         <input id="titulo" type="text" placeholder="titulo" formControlName="titulo">
