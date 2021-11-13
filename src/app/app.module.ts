@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TarefaCriarComponent } from './tarefa/criar/tarefa-criar.component';
 import { TarefaListarComponent } from './tarefa/listar/tarefa-listar.component';
 import { TarefaEditarComponent } from './tarefa/editar/tarefa-editar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TarefaEditarComponent } from './tarefa/editar/tarefa-editar.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
