@@ -1,24 +1,28 @@
-<h1>{{titulo}}</h1>
-<hr>
-<br>
+<div class="container main-container">
+    <h1>{{titulo}}</h1>
+    <hr>
+    <br>
 
-<table>
-    <thead>
-        <tr>
-            <th scope="col">Titulo</th>
-            <th scope="col">Prioridade</th>
-            <th scope="col">Data Criação</th>
-            <th scope="col">Data Conclusão</th>
-            <th scope="col">Percentual</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let tarefa of listarTarefas">
-            <td>{{tarefa.titulo}}</td>
-            <td>{{converterPrioridade(tarefa.prioridade)}}</td>
-            <td>{{tarefa.dataCriacao.toLocaleDateString()}}</td>
-            <td>{{tarefa.dataConclusao.toLocaleDateString()}}</td>
-            <td>{{tarefa.percentual}}</td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Prioridade</th>
+                <th scope="col">Data Criação</th>
+                <th scope="col">Data Conclusão</th>
+                <th scope="col">Percentual</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tarefa of listarTarefas">
+                <td>{{tarefa.titulo}}</td>
+                <td>{{converterPrioridade(tarefa.prioridade)}}</td>
+                <td>{{formatarData(tarefa.dataCriacao)}}</td>
+                <td>{{formatarData(tarefa.dataCriacao)}}</td>
+                <td>{{tarefa.percentual}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

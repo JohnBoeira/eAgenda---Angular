@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ITarefaService } from 'src/app/shared/ITarefaService';
 import { Tarefa } from 'src/app/shared/model/tarefa';
 import { TarefaCriarComponent } from '../criar/tarefa-criar.component';
 
@@ -11,7 +12,7 @@ export class TarefaListarComponent implements OnInit {
   titulo: string = "Lista Tarefas";
   listarTarefas: Tarefa[] =  [];
 
-  constructor() { }
+  constructor( @Inject('ITarefaServiceToken') private servico: ITarefaService) { }
 
   ngOnInit(): void {
     this.obterTarefa();
@@ -19,8 +20,7 @@ export class TarefaListarComponent implements OnInit {
 
 
   obterTarefa() {
-    this.listarTarefas.push(new Tarefa(1, "Codar", new Date(2013, 4, 8), new Date(2013, 4, 8),10,1 ))
-    this.listarTarefas.push(new Tarefa(2, "Cortar cabelo", new Date(2013, 4, 8), new Date(2013, 4, 8),10,0 ))
+    this.listarTarefas = this.servico.obterTarefas();
 
   }
 
@@ -35,6 +35,10 @@ export class TarefaListarComponent implements OnInit {
       return "Alta"
 
     return "Indefinido"
+  }
+
+  formatarData(data: Date): string {
+    return new Date(data).toLocaleDateString();
   }
 
 }

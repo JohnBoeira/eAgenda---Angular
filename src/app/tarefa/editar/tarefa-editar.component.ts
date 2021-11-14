@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ITarefaService } from 'src/app/shared/ITarefaService';
 import { Tarefa } from 'src/app/shared/model/tarefa';
 
 @Component({
@@ -14,13 +15,12 @@ export class TarefaEditarComponent implements OnInit {
   tarefa: Tarefa;
   id: any;
 
-  constructor(private _Activatedroute: ActivatedRoute) { }
+  constructor(private _Activatedroute: ActivatedRoute,@Inject('ITarefaServiceToken') private servico: ITarefaService, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this._Activatedroute.snapshot.paramMap.get("id");
-    console.log(this.id);
     this.obterTarefa();
-
+  
     this.cadastroForm = new FormGroup({
       id: new FormControl(this.tarefa.id),
       titulo: new FormControl(this.tarefa.titulo),
@@ -32,12 +32,19 @@ export class TarefaEditarComponent implements OnInit {
   }
 
   editarTarefa() {
-    console.log(this.cadastroForm.value);
+    this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value);
+    this.servico.atualizarTarefa(this.tarefa);
+
+    this.router.navigate(['funcionario/listar']);
   }
 
   obterTarefa() {
-    this.tarefa = new Tarefa(1, "Codar", new Date(2013, 4, 8), new Date(2013, 4, 8),10,1 );
+    this.tarefa = this.servico.obterTarefa(this.id);
 
+  }
+
+  cancelar() {
+    this.router.navigate(['funcionario/listar']);
   }
 
 }
