@@ -24,8 +24,8 @@ export class TarefaEditarComponent implements OnInit {
     this.cadastroForm = new FormGroup({
       id: new FormControl(this.tarefa.id),
       titulo: new FormControl(this.tarefa.titulo),
-      dataCriacao: new FormControl(this.tarefa.dataCriacao.toISOString().substring(0,10)),
-      dataConclusao: new FormControl(this.tarefa.dataConclusao.toISOString().substring(0,10)),
+      dataCriacao: new FormControl(this.tarefa.dataCriacao),
+      dataConclusao: new FormControl(this.tarefa.dataConclusao),
       percentual: new FormControl(this.tarefa.percentual),
       prioridade: new FormControl(this.tarefa.prioridade)
     })
@@ -45,6 +45,9 @@ export class TarefaEditarComponent implements OnInit {
 
   cancelar() {
     this.router.navigate(['funcionario/listar']);
+  }
+  formatarData(data: Date): string {
+    return new Date(data).toLocaleDateString();
   }
 
 }

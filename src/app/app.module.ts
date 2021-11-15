@@ -28,3 +28,4 @@ import { LocalStorageService } from './tarefa/services/local-storage.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
